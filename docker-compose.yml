@@ -1,0 +1,30 @@
+version: "3.8"
+
+services:
+  backend:
+    hostname: backend
+    build:
+      context: .
+      target: prod-container
+    working_dir: /app/delphos_iq
+    volumes:
+      - ./:/app/delphos_iq
+    user: root
+    container_name: backend
+    ports:
+      - "8000:8000"
+    command: uwsgi --ini /app/uwsgi.ini
+    networks:
+      - default
+
+  psql:
+    image: postgres:14-alpine
+    container_name: postgres
+    hostname: psql
+    environment:
+      - POSTGRES_PASSWORD=ubuntu
+      - POSTGRES_USER=ubuntu
+    networks:
+      - default
+    ports:
+      - "0.0.0.0:5432:5432/tcp"
