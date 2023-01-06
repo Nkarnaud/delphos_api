@@ -35,7 +35,7 @@ RUN apt-get update && \
 
 COPY --chown=pythonrunner:pythonrunner --from=builder /home/pythonrunner/.local /usr/local
 COPY --chown=pythonrunner:pythonrunner delphos_iq /app/
-COPY --chown=pythonrunner:pythonrunner uwsgi.ini /app/delphos_iq/uwsgi.ini
+COPY --chown=pythonrunner:pythonrunner uwsgi.ini /app/uwsgi.ini
 
 USER pythonrunner
 WORKDIR /app/delphos_iq

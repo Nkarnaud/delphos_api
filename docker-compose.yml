@@ -7,8 +7,6 @@ services:
       context: .
       target: prod-container
     working_dir: /app/delphos_iq
-    volumes:
-      - ./:/app/delphos_iq
     user: root
     container_name: backend
     ports:
