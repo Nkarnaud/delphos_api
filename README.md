@@ -7,13 +7,17 @@ Start the database container
 docker-compose run -d --service-ports --name psql psql
 ```
 
-connect to the postgres container 
+connect to the postgres container and create database schema
 
 ```shell
 docker exec -it psql bash
 ```
-
 create database name `delphos_iq`
+
+```shell
+psql -U ubuntu
+CREATE DATABASE delphos_iq
+```
 
 ## Backend Service
 
@@ -35,12 +39,16 @@ connect to the backend service and create migration files
 ```shell
 docker exec -it CONTAINER_NAME bash
 ```
-In the container run the following command
+In the container run migration to create the database schema
 
 ```shell
-cd ..
-python manage.py makemigrations
 python manage.py migrate
+```
+
+Run the django development server
+
+```shell
+python manage.py runserver 0.0.0.0:8000
 ```
 
 ## Run the scraper

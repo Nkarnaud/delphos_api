@@ -5,13 +5,15 @@ services:
     hostname: backend
     build:
       context: .
-      target: prod-container
+      target: dev-container
+    volumes:
+      - ./:/app/:delegated
     working_dir: /app/delphos_iq
     user: root
     container_name: backend
     ports:
       - "8000:8000"
-    command: uwsgi --ini /app/uwsgi.ini
+    command: bash
     networks:
       - default
 

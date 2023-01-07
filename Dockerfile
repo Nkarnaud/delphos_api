@@ -43,3 +43,16 @@ WORKDIR /app/delphos_iq
 EXPOSE 8000
 
 CMD ["uwsgi", "--ini", "/app/uwsgi.ini"]
+
+FROM builder As dev-container
+
+USER root
+
+COPY requirements.txt /tmp/requirements.txt
+RUN cp -r /home/pythonrunner/.local/* /usr/local
+
+WORKDIR /app/privybox
+USER pythonrunner
+
+CMD ["bash"]
+
